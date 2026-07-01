@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n33s Creator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app" class="hidden">
+        <section id="selector-view" class="view hidden">
+            <div class="selector-shell">
+                <header class="view-header">
+                    <div>
+                        <p class="eyebrow">Los Santos</p>
+                        <h1>Wybór postaci</h1>
+                    </div>
+                    <span id="slot-count" class="status-pill">0/3</span>
+                </header>
+                <div id="slots" class="slots-grid"></div>
+            </div>
+        </section>
+
+        <section id="creator-view" class="view hidden">
+            <div class="creator-hud">
+                <aside class="panel identity-panel">
+                    <header class="panel-header">
+                        <p class="eyebrow">Nowa postać</p>
+                        <h2>Tożsamość</h2>
+                    </header>
+
+                    <div class="form-grid">
+                        <label>
+                            <span>Imię</span>
+                            <input id="firstname" maxlength="32" autocomplete="off">
+                        </label>
+                        <label>
+                            <span>Nazwisko</span>
+                            <input id="lastname" maxlength="32" autocomplete="off">
+                        </label>
+                        <label>
+                            <span>Pochodzenie</span>
+                            <input id="nationality" maxlength="48" autocomplete="off" value="Polska">
+                        </label>
+                        <label>
+                            <span>Data urodzenia</span>
+                            <input id="dateofbirth" placeholder="YYYY-MM-DD" maxlength="10" autocomplete="off">
+                        </label>
+
+                        <label class="range-row">
+                            <span>Wzrost</span>
+                            <output id="height-output">180 cm</output>
+                            <input id="height" type="range" min="150" max="200" step="1" value="180">
+                        </label>
+
+                        <div class="field-block">
+                            <span>Płeć</span>
+                            <div class="segmented" id="gender-group">
+                                <button type="button" class="segment active" data-gender="male">Mężczyzna</button>
+                                <button type="button" class="segment" data-gender="female">Kobieta</button>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <main class="panel appearance-panel">
+                    <header class="panel-header">
+                        <p class="eyebrow">Wygląd</p>
+                        <h2>Kreator</h2>
+                    </header>
+
+                    <nav class="tabs" id="tabs">
+                        <button type="button" class="tab active" data-tab="face">Twarz</button>
+                        <button type="button" class="tab" data-tab="hair">Włosy</button>
+                        <button type="button" class="tab" data-tab="details">Detale</button>
+                        <button type="button" class="tab" data-tab="clothes">Ubrania</button>
+                        <button type="button" class="tab" data-tab="props">Dodatki</button>
+                        <button type="button" class="tab" data-tab="camera">Kamera</button>
+                    </nav>
+
+                    <div class="tab-panel active" data-panel="face">
+                        <label class="range-row">
+                            <span>Matka</span>
+                            <output data-output="face.mother">21</output>
+                            <input type="range" min="0" max="45" step="1" data-appearance="face.mother">
+                        </label>
+                        <label class="range-row">
+                            <span>Ojciec</span>
+                            <output data-output="face.father">0</output>
+                            <input type="range" min="0" max="45" step="1" data-appearance="face.father">
+                        </label>
+                        <label class="range-row">
+                            <span>Kształt</span>
+                            <output data-output="face.shapeMix">0.50</output>
+                            <input type="range" min="0" max="1" step="0.01" data-appearance="face.shapeMix">
+                        </label>
+                        <label class="range-row">
+                            <span>Skóra</span>
+                            <output data-output="face.skinMix">0.50</output>
+                            <input type="range" min="0" max="1" step="0.01" data-appearance="face.skinMix">
+                        </label>
+                    </div>
+
+                    <div class="tab-panel" data-panel="hair">
+                        <label class="range-row">
+                            <span>Fryzura</span>
+                            <output data-output="hair.style">0</output>
+                            <input type="range" min="0" max="120" step="1" data-appearance="hair.style">
+                        </label>
+                        <label class="range-row">
+                            <span>Kolor włosów</span>
+                            <output data-output="hair.color">0</output>
+                            <input type="range" min="0" max="63" step="1" data-appearance="hair.color">
+                        </label>
+                        <label class="range-row">
+                            <span>Pasemka</span>
+                            <output data-output="hair.highlight">0</output>
+                            <input type="range" min="0" max="63" step="1" data-appearance="hair.highlight">
+                        </label>
+                        <label class="range-row">
+                            <span>Oczy</span>
+                            <output data-output="eyeColor">0</output>
+                            <input type="range" min="0" max="31" step="1" data-appearance="eyeColor">
+                        </label>
+                    </div>
+
+                    <div class="tab-panel" data-panel="details">
+                        <label class="range-row">
+                            <span>Zarost</span>
+                            <output data-output="overlays.beard">-1</output>
+                            <input type="range" min="-1" max="30" step="1" data-appearance="overlays.beard">
+                        </label>
+                        <label class="range-row">
+                            <span>Intensywność zarostu</span>
+                            <output data-output="overlays.beardOpacity">0.00</output>
+                            <input type="range" min="0" max="1" step="0.01" data-appearance="overlays.beardOpacity">
+                        </label>
+                        <label class="range-row">
+                            <span>Kolor zarostu</span>
+                            <output data-output="overlays.beardColor">0</output>
+                            <input type="range" min="0" max="63" step="1" data-appearance="overlays.beardColor">
+                        </label>
+                        <label class="range-row">
+                            <span>Brwi</span>
+                            <output data-output="overlays.eyebrows">0</output>
+                            <input type="range" min="-1" max="34" step="1" data-appearance="overlays.eyebrows">
+                        </label>
+                        <label class="range-row">
+                            <span>Intensywność brwi</span>
+                            <output data-output="overlays.eyebrowsOpacity">0.80</output>
+                            <input type="range" min="0" max="1" step="0.01" data-appearance="overlays.eyebrowsOpacity">
+                        </label>
+                        <label class="range-row">
+                            <span>Makijaż</span>
+                            <output data-output="overlays.makeup">-1</output>
+                            <input type="range" min="-1" max="75" step="1" data-appearance="overlays.makeup">
+                        </label>
+                        <label class="range-row">
+                            <span>Intensywność makijażu</span>
+                            <output data-output="overlays.makeupOpacity">0.00</output>
+                            <input type="range" min="0" max="1" step="0.01" data-appearance="overlays.makeupOpacity">
+                        </label>
+                    </div>
+
+                    <div class="tab-panel" data-panel="clothes">
+                        <div id="component-controls" class="dynamic-controls"></div>
+                    </div>
+
+                    <div class="tab-panel" data-panel="props">
+                        <div id="prop-controls" class="dynamic-controls"></div>
+                    </div>
+
+                    <div class="tab-panel" data-panel="camera">
+                        <div class="button-grid">
+                            <button type="button" class="secondary" data-camera="face">Twarz</button>
+                            <button type="button" class="secondary" data-camera="body">Sylwetka</button>
+                            <button type="button" class="secondary" data-camera="full">Całość</button>
+                            <button type="button" class="secondary" data-camera="shoes">Buty</button>
+                            <button type="button" class="secondary" data-rotate="-20">Obróć w lewo</button>
+                            <button type="button" class="secondary" data-rotate="20">Obróć w prawo</button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+
+            <footer class="creator-actions">
+                <button type="button" id="back-to-selection" class="secondary">Wróć</button>
+                <button type="button" id="save-character" class="primary">Zapisz postać</button>
+            </footer>
+        </section>
+
+        <section id="id-card-view" class="id-card-backdrop hidden">
+            <article class="id-card">
+                <div class="id-card-stripe"></div>
+                <header>
+                    <div>
+                        <p>Los Santos</p>
+                        <h2>Dowód osobisty</h2>
+                    </div>
+                    <span>LS-ID</span>
+                </header>
+                <div class="id-card-body">
+                    <img id="id-avatar" src="assets/avatar_male.svg" alt="">
+                    <dl>
+                        <div>
+                            <dt>Imię</dt>
+                            <dd id="id-firstname">-</dd>
+                        </div>
+                        <div>
+                            <dt>Nazwisko</dt>
+                            <dd id="id-lastname">-</dd>
+                        </div>
+                        <div>
+                            <dt>Pochodzenie</dt>
+                            <dd id="id-nationality">-</dd>
+                        </div>
+                        <div>
+                            <dt>Data urodzenia</dt>
+                            <dd id="id-dateofbirth">-</dd>
+                        </div>
+                        <div>
+                            <dt>Wzrost</dt>
+                            <dd id="id-height">-</dd>
+                        </div>
+                        <div>
+                            <dt>Płeć</dt>
+                            <dd id="id-gender">-</dd>
+                        </div>
+                    </dl>
+                </div>
+                <button type="button" id="close-id-card" class="secondary">Zamknij</button>
+            </article>
+        </section>
+
+        <div id="toast" class="toast hidden"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Female avatar">
+  <rect width="256" height="256" fill="#101820"/>
+  <circle cx="128" cy="92" r="43" fill="#f0abfc"/>
+  <path d="M49 225c10-52 40-81 79-81s69 29 79 81" fill="#ccfbf1"/>
+  <path d="M76 132c-9-52 13-92 52-92 37 0 60 40 52 92-14-24-29-35-52-35s-39 11-52 35z" fill="#312e81"/>
+  <circle cx="112" cy="101" r="5" fill="#0f172a"/>
+  <circle cx="145" cy="101" r="5" fill="#0f172a"/>
+  <path d="M107 120c12 10 30 10 42 0" fill="none" stroke="#0f172a" stroke-width="7" stroke-linecap="round"/>
+</svg>
